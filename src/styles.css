@@ -107,6 +107,29 @@ body {
   background: rgba(255, 255, 255, 0.16);
 }
 
+.pwa-install-banner {
+  position: fixed;
+  right: 16px;
+  bottom: 80px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pwa-install-banner i {
+  font-size: 16px;
+}
+
 /* Generic cards & layout */
 .page {
   display: flex;
