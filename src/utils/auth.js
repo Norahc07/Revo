@@ -51,7 +51,7 @@ export function registerUser({ username, email, password }) {
       ok: false,
       field: "password",
       message:
-        "Password must be 8+ chars with letters, numbers & a special character."
+        "Password must be 8+ characters with letters, numbers & a special character."
     };
   }
 
