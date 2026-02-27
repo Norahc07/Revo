@@ -59,6 +59,7 @@ export default function Auth() {
               <label>Username</label>
               <input
                 type="text"
+                placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -72,6 +73,7 @@ export default function Auth() {
             <label>Email</label>
             <input
               type="email"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -82,6 +84,7 @@ export default function Auth() {
             <label>Password</label>
             <input
               type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
