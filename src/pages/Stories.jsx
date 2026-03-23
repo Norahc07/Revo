@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const TOTAL_STORIES = 5;
+import { STORY_COUNT } from "../storiesData.js";
 
 function getStoryMastery(lesson) {
   const value = localStorage.getItem(`story${lesson}_mastery`);
@@ -14,7 +13,7 @@ export default function Stories() {
 
   useEffect(() => {
     const data = [];
-    for (let i = 1; i <= TOTAL_STORIES; i += 1) {
+    for (let i = 1; i <= STORY_COUNT; i += 1) {
       data.push({ lesson: i, mastery: getStoryMastery(i) });
     }
     setMastery(data);

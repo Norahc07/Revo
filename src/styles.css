@@ -11,12 +11,40 @@
   --danger: #ffb3c6;
   --icon-primary: #6b4fd9;
   --content-font-size: 16px;
+  /* Main content panels (match bottom nav) */
+  --revo-panel-bg: linear-gradient(
+    135deg,
+    rgba(19, 10, 68, 0.96),
+    rgba(108, 77, 212, 0.96)
+  );
+  --revo-panel-border: rgba(255, 255, 255, 0.16);
+  --revo-panel-shadow: 0 20px 52px rgba(12, 6, 42, 0.45);
+  /* Nested glass surfaces inside panels */
+  --revo-glass-bg: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(147, 112, 219, 0.14)
+  );
+  --revo-glass-border: rgba(255, 255, 255, 0.26);
+}
+
+/* Root size drives all `rem` units + inheritance (Settings → font size) */
+html {
+  font-size: var(--content-font-size);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 body {
@@ -43,7 +71,6 @@ body {
   padding: 20px 16px 90px;
   max-width: 960px;
   margin: 0 auto;
-  font-size: var(--content-font-size);
 }
 
 /* Nav: bottom on mobile, sidebar on desktop */
@@ -56,12 +83,8 @@ body {
   max-width: 720px;
   height: 64px;
   border-radius: 18px;
-  background: linear-gradient(
-      135deg,
-      rgba(19, 10, 68, 0.96),
-      rgba(108, 77, 212, 0.96)
-    );
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--revo-panel-bg);
+  border: 1px solid var(--revo-panel-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -90,11 +113,11 @@ body {
   width: 54px;
   height: 54px;
   border-radius: 14px;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 .revo-nav-item i {
-  font-size: 18px;
+  font-size: 1.125rem;
   margin-bottom: 2px;
 }
 
@@ -122,12 +145,12 @@ body {
   color: var(--text);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
 .pwa-install-banner i {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 /* Generic cards & layout */
@@ -161,7 +184,7 @@ body {
 
 .page-header h1 {
   margin: 4px 0;
-  font-size: 26px;
+  font-size: 1.625rem;
 }
 
 .muted {
@@ -169,11 +192,11 @@ body {
 }
 
 .small {
-  font-size: calc(var(--content-font-size) * 0.85);
+  font-size: 0.85rem;
 }
 
 .tiny {
-  font-size: calc(var(--content-font-size) * 0.75);
+  font-size: 0.75rem;
 }
 
 .card,
@@ -213,6 +236,35 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Home: glass tiles on nav-style panel */
+.home-card .feature-card {
+  background: var(--revo-glass-bg);
+  border: 1px solid var(--revo-glass-border);
+  color: #fff;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.home-card .feature-card h2 {
+  color: #fff;
+}
+
+.home-card .feature-card .muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.home-card .feature-card-header i {
+  color: #e9d5ff;
+}
+
+.home-card .feature-card .chip {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
 .feature-card h2 {
   margin: 0 0 4px;
 }
@@ -224,7 +276,7 @@ body {
   border-radius: 999px;
   background: var(--primary);
   color: #483d8b;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
@@ -318,7 +370,7 @@ body {
 }
 
 .list-card-title-row i {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: var(--icon-primary);
 }
 
@@ -339,7 +391,7 @@ body {
 }
 
 .summary-card-header i {
-  font-size: 22px;
+  font-size: 1.375rem;
   color: var(--icon-primary);
 }
 
@@ -350,11 +402,43 @@ body {
 /* Progress page refinements */
 .progress-card .summary-card,
 .progress-card .history-card {
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--text);
+  background: var(--revo-glass-bg);
+  color: #fff;
   border-radius: 18px;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.progress-card .summary-card .muted,
+.progress-card .history-card .muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.progress-card .summary-card h2 {
+  color: #fef3c7;
+}
+
+.progress-card .summary-card-header i,
+.progress-card .history-title i {
+  color: #e9d5ff;
+}
+
+.progress-card .history-title {
+  color: #fff;
+}
+
+.progress-card .history-card .chip {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.progress-card .history-card .link-btn {
+  color: #fbe9ff;
+  padding-inline: 0;
 }
 
 .progress-card .summary-card {
@@ -389,11 +473,6 @@ body {
   gap: 10px;
 }
 
-.progress-card .history-card .link-btn {
-  color: var(--icon-primary);
-  padding-inline: 0;
-}
-
 .progress-page {
   gap: 0;
 }
@@ -407,14 +486,11 @@ body {
   margin-top: 8px;
   padding: 22px 20px 20px;
   border-radius: 26px;
-  background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.14),
-      rgba(255, 255, 255, 0.04)
-    );
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  background: var(--revo-panel-bg);
+  border: 1px solid var(--revo-panel-border);
+  box-shadow: var(--revo-panel-shadow);
   color: #fff;
+  backdrop-filter: blur(12px);
 }
 
 .progress-header {
@@ -478,7 +554,7 @@ body {
 }
 
 .feature-card-header i {
-  font-size: 22px;
+  font-size: 1.375rem;
   color: var(--icon-primary);
 }
 
@@ -495,6 +571,10 @@ body {
 .history-row {
   padding: 8px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.progress-card .history-row {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .history-main {
@@ -526,9 +606,26 @@ body {
 }
 
 .story-timer {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--muted);
+}
+
+.stories-card .story-body {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1.65;
+}
+
+.stories-card .story-body p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.stories-card .story-timer {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .vocab-title,
@@ -547,6 +644,41 @@ body {
   gap: 12px;
 }
 
+/* Vocabulary set rows: same glass treatment as story list */
+.vocab-card .vocab-set.list-card {
+  background: var(--revo-glass-bg);
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.vocab-card .vocab-set h2 {
+  margin: 0 0 2px;
+  color: #fff;
+}
+
+.vocab-card .vocab-set .muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.vocab-card .vocab-set-mastery-value {
+  color: #fef3c7;
+}
+
+.vocab-card .vocab-set--locked.list-card {
+  opacity: 0.78;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(36, 22, 78, 0.42)
+  );
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
 .stories-list {
   display: flex;
   flex-direction: column;
@@ -554,25 +686,91 @@ body {
 }
 
 .stories-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "main meta"
+    "actions actions";
   align-items: flex-start;
-  flex-direction: column;
-  gap: 8px;
-  padding: 10px 14px;
+  gap: 6px 12px;
+  padding: 10px 12px;
   border-radius: 14px;
 }
 
+/* Story rows: frosted glass to match home/settings cards (not plain white) */
+.stories-card .stories-item.list-card {
+  background: var(--revo-glass-bg);
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.stories-card .stories-item .list-card-title-row i {
+  color: #e9d5ff;
+}
+
+.stories-card .stories-item h2 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.stories-card .stories-item .muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.stories-card .stories-item .list-card-main {
+  grid-area: main;
+  gap: 2px;
+}
+
+.stories-card .stories-item .list-card-main p {
+  margin: 0;
+}
+
+.stories-card .stories-item-mastery {
+  color: #fef3c7;
+}
+
+.stories-card .stories-item--locked.list-card {
+  opacity: 0.78;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(36, 22, 78, 0.42)
+  );
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
 .stories-item-meta {
-  margin-left: auto;
+  grid-area: meta;
   text-align: right;
+  align-self: start;
+}
+
+.stories-item-meta .muted {
+  margin: 0;
 }
 
 .stories-item-mastery {
   display: block;
   font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.1;
 }
 
 .stories-actions {
-  margin-top: 6px;
+  grid-area: actions;
+  margin-top: 2px;
+}
+
+.stories-actions .primary-btn {
+  padding: 8px 12px;
+  font-size: 0.82rem;
 }
 
 .stories-item--locked {
@@ -580,7 +778,9 @@ body {
 }
 
 .stories-lock-note {
-  margin-top: 6px;
+  grid-area: actions;
+  margin-top: 2px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -623,7 +823,7 @@ body {
 .vocab-set-mastery-value {
   display: block;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .vocab-actions {
@@ -680,7 +880,7 @@ body {
 }
 
 .flashcard-content {
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 600;
   text-align: center;
   margin: auto 0;
@@ -688,7 +888,7 @@ body {
 
 .flashcard-label,
 .flashcard-hint {
-  font-size: 16px;
+  font-size: 1rem;
   text-align: center;
   width: 100%;
 
@@ -696,6 +896,29 @@ body {
 
 .flashcard-hint {
   margin: 0;
+}
+
+.vocab-card .flashcard-face,
+.stories-card .flashcard-face {
+  background: var(--revo-glass-bg);
+  color: #fff;
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.vocab-card .flashcard-label,
+.stories-card .flashcard-label,
+.vocab-card .flashcard-hint,
+.stories-card .flashcard-hint {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.vocab-card .study-counter,
+.stories-card .study-counter {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .study-controls {
@@ -712,7 +935,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--muted);
   pointer-events: none;
@@ -731,6 +954,22 @@ body {
   border: 1px solid var(--border);
   padding: 14px 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vocab-card .test-question-card,
+.stories-card .test-question-card {
+  background: var(--revo-glass-bg);
+  color: #fff;
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.vocab-card .test-question-card .muted,
+.stories-card .test-question-card .muted {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .quiz-options {
@@ -779,10 +1018,15 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--muted);
   pointer-events: none;
+}
+
+.vocab-card .test-counter,
+.stories-card .test-counter {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .test-next-btn {
@@ -797,8 +1041,18 @@ body {
 }
 
 .test-score {
-  font-size: 32px;
+  font-size: 2rem;
   margin: 0;
+}
+
+.vocab-card .test-results .test-score,
+.stories-card .test-results .test-score {
+  color: #fff;
+}
+
+.vocab-card .test-results .muted,
+.stories-card .test-results .muted {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .test-results-actions {
@@ -825,7 +1079,7 @@ body {
 }
 
 .field label {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
@@ -837,7 +1091,7 @@ body {
 }
 
 .field-error {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #ff6961;
 }
 
@@ -854,7 +1108,7 @@ body {
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 14px;
+  font-size: 0.875rem;
   cursor: pointer;
   margin-bottom: -10px;
   display: inline-flex;
@@ -937,7 +1191,7 @@ body {
 
 .landing-title {
   margin: 0 0 10px;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .landing-subtitle {
@@ -971,7 +1225,7 @@ body {
   }
 
   .landing-title {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 
   .auth-card {
@@ -1027,15 +1281,28 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
+.notes-card .note-card {
+  background: var(--revo-glass-bg);
+  border: 1px solid var(--revo-glass-border);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .note-textarea {
   width: 100%;
   min-height: 80px;
   border: none;
   resize: vertical;
   font-family: inherit;
-  font-size: var(--content-font-size);
+  font-size: 1rem;
   background: transparent;
   color: var(--text);
+}
+
+.notes-card .note-textarea {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .note-textarea:focus {
@@ -1060,12 +1327,16 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .note-delete-btn {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted);
+}
+
+.notes-card .note-delete-btn {
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .settings-section {
@@ -1074,7 +1345,7 @@ body {
 
 .settings-section-title {
   margin: 0 0 4px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .settings-font-row {
@@ -1088,11 +1359,11 @@ body {
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .settings-font-option--active {
@@ -1132,9 +1403,19 @@ body {
   border: 1px solid var(--border);
   padding: 10px 12px;
   font-family: inherit;
-  font-size: var(--content-font-size);
+  font-size: 1rem;
   resize: vertical;
   min-height: 120px;
+}
+
+.settings-card .help-textarea {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--revo-glass-border);
+  color: #fff;
+}
+
+.settings-card .help-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .help-send-btn {

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  applyContentFontSize,
+  FONT_SIZE_STORAGE_KEY
+} from "../utils/fontSize.js";
 
 const FONT_OPTIONS = [
   { id: "small", label: "Small", px: 14 },
@@ -8,35 +12,25 @@ const FONT_OPTIONS = [
   { id: "large", label: "Large", px: 20 }
 ];
 
-function applyFontSize(px) {
-  const value = `${px}px`;
-  try {
-    localStorage.setItem("fontSize", value);
-  } catch {
-    // ignore
-  }
-  document.documentElement.style.setProperty("--content-font-size", value);
-}
-
 export default function Settings() {
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState("normal");
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("fontSize");
+      const stored = localStorage.getItem(FONT_SIZE_STORAGE_KEY);
       if (stored) {
         const match = FONT_OPTIONS.find((opt) => `${opt.px}px` === stored);
         if (match) {
           setSelectedId(match.id);
-          applyFontSize(match.px);
+          applyContentFontSize(match.px);
           return;
         }
       }
       // Fallback to normal if nothing stored or match not found
       const normal = FONT_OPTIONS.find((opt) => opt.id === "normal");
       if (normal) {
-        applyFontSize(normal.px);
+        applyContentFontSize(normal.px);
       }
     } catch {
       // ignore
@@ -45,7 +39,7 @@ export default function Settings() {
 
   const handleSelect = (option) => {
     setSelectedId(option.id);
-    applyFontSize(option.px);
+    applyContentFontSize(option.px);
   };
 
   const handleReset = () => {
