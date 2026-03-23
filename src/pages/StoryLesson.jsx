@@ -313,10 +313,7 @@ export default function StoryLesson() {
 
         <div className="test-layout">
           <div className="test-question-card">
-            <p className="muted tiny">
-              Question {questionIndex + 1} of {totalQuestions}
-            </p>
-            <h2>{question.prompt}</h2>
+            <h2 className="test-question-prompt">{question.prompt}</h2>
           </div>
 
           <div className="quiz-options">
@@ -340,26 +337,30 @@ export default function StoryLesson() {
           </div>
 
           <div className="test-controls">
-            {questionIndex > 0 && (
-              <button
-                type="button"
-                className="secondary-btn"
-                onClick={handlePrev}
-              >
-                Previous
-              </button>
-            )}
-            <span className="test-counter">
+            <span className="test-counter" aria-live="polite">
               Question {questionIndex + 1} of {totalQuestions}
             </span>
-            <button
-              type="button"
-              className="primary-btn test-next-btn"
-              onClick={handleNextOrFinish}
-              disabled={questionIndex === totalQuestions - 1 && !allAnswered}
-            >
-              {questionIndex === totalQuestions - 1 ? "Finish quiz" : "Next question"}
-            </button>
+            <div className="test-controls-buttons">
+              {questionIndex > 0 && (
+                <button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+              )}
+              <button
+                type="button"
+                className="primary-btn test-next-btn"
+                onClick={handleNextOrFinish}
+                disabled={questionIndex === totalQuestions - 1 && !allAnswered}
+              >
+                {questionIndex === totalQuestions - 1
+                  ? "Finish quiz"
+                  : "Next question"}
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
+import { getCurrentUser } from "../utils/auth.js";
 
 export default function LayoutShell({ children }) {
   const location = useLocation();
@@ -53,7 +54,9 @@ export default function LayoutShell({ children }) {
     setInstallPromptEvent(null);
   };
 
-  const showInstallBanner = showInstall && !hideNav;
+  /* Only offer install while logged out (browser); hide after sign-in */
+  const loggedIn = Boolean(getCurrentUser());
+  const showInstallBanner = showInstall && !loggedIn;
 
   return (
     <div className={`revo-app${hideNav ? " revo-app--landing" : ""}`}>

@@ -230,10 +230,7 @@ export default function VocabTest() {
 
         <div className="test-layout">
           <div className="test-question-card">
-            <p className="muted tiny">
-              Question {index + 1} of {total}
-            </p>
-            <h2>{current.prompt}</h2>
+            <h2 className="test-question-prompt">{current.prompt}</h2>
           </div>
 
           <div className="quiz-options">
@@ -257,26 +254,28 @@ export default function VocabTest() {
           </div>
 
           <div className="test-controls">
-            {index > 0 && (
-              <button
-                type="button"
-                className="secondary-btn"
-                onClick={handlePrev}
-              >
-                Previous
-              </button>
-            )}
-            <span className="test-counter">
+            <span className="test-counter" aria-live="polite">
               Question {index + 1} of {total}
             </span>
-            <button
-              type="button"
-              className="primary-btn test-next-btn"
-              onClick={handleNextOrFinish}
-              disabled={index === total - 1 && !allAnswered}
-            >
-              {index === total - 1 ? "Finish test" : "Next question"}
-            </button>
+            <div className="test-controls-buttons">
+              {index > 0 && (
+                <button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+              )}
+              <button
+                type="button"
+                className="primary-btn test-next-btn"
+                onClick={handleNextOrFinish}
+                disabled={index === total - 1 && !allAnswered}
+              >
+                {index === total - 1 ? "Finish test" : "Next question"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
